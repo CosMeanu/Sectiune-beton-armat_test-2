@@ -28,7 +28,7 @@ document.getElementById('sectionForm').addEventListener('submit', function(event
 
  
 // Draw reinforcement bars at the bottom
-    const bottomBarSpacing = (width - 2 * cover - 2 * stirrupDiameter - barDiameters[0] / 2 - barDiameters[numBars - 1] / 2) * 10 / (numBars - 1);
+    const bottomBarSpacing = ((width - 2 * cover - 2 * stirrupDiameter - barDiameters[0] / 2 - barDiameters[numBars - 1] / 2) * 10 )/ (numBars - 1);
     context.fillStyle = '#000000';
     barDiameters.forEach((diameter, index) => {
         const x = (cover - stirrupDiameter / 2 - diameter / 2) * 10 + index * bottomBarSpacing;
