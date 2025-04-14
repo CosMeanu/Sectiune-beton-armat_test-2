@@ -38,7 +38,7 @@ function drawSection(width, height, cover, stirrupDiameter, numBars, barDiameter
     const barSpacing = (stirrupWidth - stirrupDiameter * 10) / (numBars - 1);
     context.fillStyle = '#000000';
     barDiameters.forEach((diameter, index) => {
-        const x = cover * 10 - 2*stirrupDiameter * 5 + index * barSpacing;
+        const bottomBarSpacing = (width - 2 * cover - 2 * stirrupDiameter - barDiameters[0] / 2 - barDiameters[numBars - 1] / 2) * 10 / (numBars - 1);
         const y = height * 10 - cover * 10 - stirrupDiameter * 5 - diameter * 5;
         context.beginPath();
         context.arc(x, y, diameter * 5, 0, 2 * Math.PI);
