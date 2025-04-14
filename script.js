@@ -27,14 +27,19 @@ document.getElementById('sectionForm').addEventListener('submit', function(event
     context.strokeRect((cover + stirrupDiameter / 2) * 10, (cover + stirrupDiameter / 2) * 10, stirrupWidth, stirrupHeight);
 
  
-// Draw reinforcement bars at the bottom
-    const bottomBarSpacing = (width - 2 * cover - 2 * stirrupDiameter - barDiameters[0] / 2 - barDiameters[numBars - 1] / 2) * 10/ (numBars - 1);
-    context.fillStyle = '#000000';
-    barDiameters.forEach((diameter, index) => {
-        const x = (cover - stirrupDiameter / 2 - barDiameters[0] / 2) * 10 + index * bottomBarSpacing;
-        const y = height * 10 - (cover + stirrupDiameter / 2 + diameter / 2) * 10;
-        context.beginPath();
-        context.arc(x, y, diameter * 5, 0, 2 * Math.PI);
-        context.fill();
-    });
-}
+// Draw reinforcement bars at the bottom with correct spacing
+const firstBarRadius = barDiameters[0] / 2;
+const lastBarRadius = barDiameters[numBars - 1] / 2;
+
+const x_start = (cover + stirrupDiameter + firstBarRadius) * 10;
+const x_end = (width - cover - stirrupDiameter - lastBarRadius) * 10;
+const spacing = (x_end - x_start) / (numBars - 1);
+
+context.fillStyle = '#000000';
+barDiameters.forEach((diameter, index) => {
+    const x = x_start + index * spacing;
+    const y = (height - cover - stirrupDiameter - diameter / 2) * 10;
+    context.beginPath();
+    context.arc(x, y, diameter * 5, 0, 2 * Math.PI);
+    context.fill();
+});
