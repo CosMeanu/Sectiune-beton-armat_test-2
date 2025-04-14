@@ -8,3 +8,8 @@ canvas {
     border: 1px solid black;
     margin-top: 20px;
 }
+
+#dimensions {
+    margin-top: 10px;
+    font-size: 16px;
+}
