@@ -1,15 +1,5 @@
-body {
-    font-family: Arial, sans-serif;
-    text-align: center;
-    margin: 20px;
-}
-
-canvas {
-    border: 1px solid black;
-    margin-top: 20px;
-}
-
-#dimensions {
-    margin-top: 10px;
-    font-size: 16px;
-}
+<style>
+    body { font-family: Arial, sans-serif; margin: 20px; }
+    label, input, button { display: block; margin-bottom: 10px; }
+    canvas { border: 1px solid #000; margin-top: 20px; }
+</style>
