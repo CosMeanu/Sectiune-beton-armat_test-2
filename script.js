@@ -35,27 +35,4 @@ function drawSection(width, height, cover, stirrupDiameter, numBars, barDiameter
     context.strokeRect((cover + stirrupDiameter / 2) * 10, (cover + stirrupDiameter / 2) * 10, stirrupWidth, stirrupHeight);
 
     // Draw reinforcement bars at the bottom
-    const bottomBarSpacing = (width - 2 * cover - 2 * stirrupDiameter - barDiameters[0] / 2 - barDiameters[numBars - 1] / 2) * 10 / (numBars - 1);
-    context.fillStyle = '#000000';
-    barDiameters.forEach((diameter, index) => {
-        const x = (cover + stirrupDiameter / 2 + diameter / 2) * 10 + index * bottomBarSpacing;
-        const y = height * 10 - (cover + stirrupDiameter / 2 + diameter / 2) * 10;
-        context.beginPath();
-        context.arc(x, y, diameter * 5, 0, 2 * Math.PI);
-        context.fill();
-    });
-
-    // Draw reinforcement bars on the sides
-    const sideBarSpacing = (stirrupHeight - barDiameters[0] * 10) / (numBars - 1);
-    barDiameters.forEach((diameter, index) => {
-        const xLeft = (cover + stirrupDiameter / 2 + diameter / 2) * 10;
-        const xRight = width * 10 - (cover + stirrupDiameter / 2 + diameter / 2) * 10;
-        const ySide = (cover + stirrupDiameter / 2) * 10 + index * sideBarSpacing;
-        context.beginPath();
-        context.arc(xLeft, ySide, diameter * 5, 0, 2 * Math.PI);
-        context.fill();
-        context.beginPath();
-        context.arc(xRight, ySide, diameter * 5, 0, 2 * Math.PI);
-        context.fill();
-    });
-}
+    const bottomBarSpacing = (width - 2 * cover - 2 *
