@@ -1,49 +1,63 @@
 <!DOCTYPE html>
 <html lang="ro">
 <head>
-  <meta charset="UTF-8">
-  <title>Calcul Secțiune Beton Armat</title>
-  <link rel="stylesheet" href="styles.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Secțiune Beton Armat</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+    }
+
+    label {
+      display: block;
+      margin-top: 10px;
+    }
+
+    input, select {
+      padding: 5px;
+      margin-top: 5px;
+      width: 100%;
+      max-width: 300px;
+    }
+
+    canvas {
+      border: 1px solid #000;
+      margin-top: 20px;
+    }
+
+    #dimensions {
+      margin-top: 10px;
+      font-weight: bold;
+    }
+  </style>
 </head>
 <body>
-  <h2>Calcul Secțiune Beton Armat - Încovoiere</h2>
+  <h2>Calcul Secțiune Beton Armat</h2>
 
   <form id="sectionForm">
-    <!-- Selectarea clasei betonului -->
-    <label for="concreteClass">Clasa betonului:</label>
-    <select id="concreteClass">
-      <option value="">-- Selectează --</option>
-      <option value="C12/15">C12/15</option>
-      <option value="C16/20">C16/20</option>
-    </select>
+    <label>Latime (cm): <input type="number" step="0.01" id="width" required /></label>
+    <label>Înălțime (cm): <input type="number" step="0.01" id="height" required /></label>
+    <label>Acoperire beton (cm): <input type="number" step="0.01" id="cover" required /></label>
+    <label>Diametru etrier (mm): <input type="number" step="0.01" id="stirrupDiameter" required /></label>
+    <label>Număr bare: <input type="number" id="numBars" required /></label>
+    <label>Diametre bare (mm, separate prin virgulă): <input type="text" id="barDiameters" required /></label>
 
-    <!-- Afișarea rezistenței fck -->
-    <label for="fck">Rezistența caracteristică la compresiune (fck):</label>
-    <input type="text" id="fck" readonly placeholder="N/mm²">
+    <label>Clasa beton:
+      <select id="betonClass">
+        <option value="">Selectează</option>
+        <option value="C12/15">C12/15</option>
+        <option value="C16/20">C16/20</option>
+      </select>
+    </label>
+    <div id="fckValue">f<sub>ck</sub>: -</div>
 
-    <!-- Alte inputuri pentru geometrie și armătură -->
-    <label for="width">Lățimea secțiunii (cm):</label>
-    <input type="number" id="width" step="0.01" required>
-
-    <label for="height">Înălțimea secțiunii (cm):</label>
-    <input type="number" id="height" step="0.01" required>
-
-    <label for="cover">Acoperire beton (cm):</label>
-    <input type="number" id="cover" step="0.01" required>
-
-    <label for="stirrupDiameter">Diametru etrier (mm):</label>
-    <input type="number" id="stirrupDiameter" step="0.01" required>
-
-    <label for="numBars">Număr bare:</label>
-    <input type="number" id="numBars" min="1" required>
-
-    <label for="barDiameters">Diametre bare (mm, separate prin virgulă):</label>
-    <input type="text" id="barDiameters" required>
-
-    <button type="submit">Calculează</button>
+    <button type="submit">Desenează secțiunea</button>
   </form>
 
-  <canvas id="sectionCanvas"></canvas>
+  <div id="dimensions"></div>
+  <canvas id="sectionCanvas" width="400" height="400"></canvas>
 
   <script src="script.js"></script>
 </body>
