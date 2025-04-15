@@ -37,35 +37,40 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
-  // Funcția pentru desenarea secțiunii
-  function drawSection(width, height, cover, stirrupDiameter, numBars, barDiameters) {
-    const canvas = document.getElementById('sectionCanvas');
-    const context = canvas.getContext('2d');
-    canvas.width = width * 10; // Convert to pixels
-    canvas.height = height * 10; // Convert to pixels
-    context.clearRect(0, 0, canvas.width, canvas.height);
+  // Funcția pentru function drawSection(width, height, cover, stirrupDiameter, numBars, barDiameters) {
+  const canvas = document.getElementById('sectionCanvas');
+  const context = canvas.getContext('2d');
+  canvas.width = width * 10; // pixels
+  canvas.height = height * 10;
+  context.clearRect(0, 0, canvas.width, canvas.height);
 
-    // Desenează secțiunea de beton
-    context.fillStyle = '#cccccc';
-    context.fillRect(0, 0, canvas.width, canvas.height);
-    context.strokeStyle = '#000000';
-    context.strokeRect(0, 0, canvas.width, canvas.height);
+  // Desenează betonul
+  context.fillStyle = '#cccccc';
+  context.fillRect(0, 0, canvas.width, canvas.height);
+  context.strokeStyle = '#000000';
+  context.strokeRect(0, 0, canvas.width, canvas.height);
 
-    // Desenează etrierul exterior
-    const stirrupWidth = (width - 2 * cover - stirrupDiameter) * 10;
-    const stirrupHeight = (height - 2 * cover - stirrupDiameter) * 10;
-    context.lineWidth = stirrupDiameter * 10;
-    context.strokeRect((cover + stirrupDiameter / 2) * 10, (cover + stirrupDiameter / 2) * 10, stirrupWidth, stirrupHeight);
+  // Desenează etrierul
+  const stirrupOffset = cover + stirrupDiameter / 2;
+  const stirrupWidth = (width - 2 * stirrupOffset) * 10;
+  const stirrupHeight = (height - 2 * stirrupOffset) * 10;
+  context.lineWidth = stirrupDiameter * 10;
+  context.strokeRect(stirrupOffset * 10, stirrupOffset * 10, stirrupWidth, stirrupHeight);
 
-    // Desenează barele
-    const bottomBarSpacing = (width - 2 * cover - 2 * stirrupDiameter - barDiameters[0] / 2 - barDiameters[numBars - 1] / 2) * 10 / (numBars - 1);
-    context.fillStyle = '#000000';
-    barDiameters.forEach((diameter, index) => {
-      const x = (cover - stirrupDiameter / 2 - barDiameters[0] / 2) * 10 + index * bottomBarSpacing;
-      const y = height * 10 - (cover + stirrupDiameter / 2 + diameter / 2) * 10;
-      context.beginPath();
-      context.arc(x, y, diameter * 5, 0, 2 * Math.PI);
-      context.fill();
-    });
+  // Poziționare bare jos (pe lățime, simetric între etrieri)
+  context.fillStyle = '#000000';
+
+  const firstBarOffset = cover + stirrupDiameter + barDiameters[0] / 2;
+  const lastBarOffset = cover + stirrupDiameter + barDiameters[numBars - 1] / 2;
+  const totalSpacingLength = width - firstBarOffset - lastBarOffset;
+  const barSpacing = numBars > 1 ? (totalSpacingLength - (barDiameters[0] / 2 + barDiameters[numBars - 1] / 2)) / (numBars - 1) : 0;
+
+  for (let i = 0; i < numBars; i++) {
+    const diameter = barDiameters[i];
+    const x = (firstBarOffset + i * barSpacing) * 10;
+    const y = (height - cover - stirrupDiameter - diameter / 2) * 10;
+    context.beginPath();
+    context.arc(x, y, diameter * 5, 0, 2 * Math.PI);
+    context.fill();
   }
-});
+}
