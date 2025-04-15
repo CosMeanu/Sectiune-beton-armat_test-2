@@ -36,14 +36,6 @@ font-weight: bold;
 <body>
 <h2>Calcul Secțiune Beton Armat</h2>
 
-<form id="sectionForm">
-<label>Latime (cm): <input type="number" step="0.01" id="width" required /></label>
-<label>Înălțime (cm): <input type="number" step="0.01" id="height" required /></label>
-<label>Acoperire beton (cm): <input type="number" step="0.01" id="cover" required /></label>
-<label>Diametru etrier (mm): <input type="number" step="0.01" id="stirrupDiameter" required /></label>
-<label>Număr bare: <input type="number" id="numBars" required /></label>
-<label>Diametre bare (mm, separate prin virgulă): <input type="text" id="barDiameters" required /></label>
-
 <label>Clasa beton:
 <select id="betonClass">
 <option value="">Selectează</option>
@@ -52,6 +44,14 @@ font-weight: bold;
 </select>
 </label>
 <div id="fckValue">f<sub>ck</sub>: -</div>
+  
+<form id="sectionForm">
+<label>Latime (cm): <input type="number" step="0.01" id="width" required /></label>
+<label>Înălțime (cm): <input type="number" step="0.01" id="height" required /></label>
+<label>Acoperire beton (cm): <input type="number" step="0.01" id="cover" required /></label>
+<label>Diametru etrier (mm): <input type="number" step="0.01" id="stirrupDiameter" required /></label>
+<label>Număr bare: <input type="number" id="numBars" required /></label>
+<label>Diametre bare (mm, separate prin virgulă): <input type="text" id="barDiameters" required /></label>
 
 <button type="submit">Desenează secțiunea</button>
 </form>
